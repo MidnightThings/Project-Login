@@ -1,0 +1,40 @@
+version: '3'
+    
+services:
+    apache:
+        container_name: apache
+        build: 
+            context: ./apache
+
+        ports:
+            - "8080:80"
+        tty: true
+        volumes:
+            -   ./app:/var/www/html
+            
+    mysql:
+        container_name: mysql
+        image: mariadb:latest
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: test
+        volumes:
+            - ./mysql_data:/var/lib/mysql
+            -   ./app:/var/www/html
+            
+    phpmyadmin:
+        container_name: phpmyadmin
+        image: phpmyadmin/phpmyadmin:latest
+        ports:
+            - 8090:80
+        environment:
+            - PMA_ARBITARY=1
+            - PMA_HOST=mysql
+            
+    php:
+        container_name: php
+        build: 
+            context: ./php
+        tty: true
+        volumes:
+            -   ./app:/var/www/html
