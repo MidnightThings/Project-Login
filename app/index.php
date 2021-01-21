@@ -30,7 +30,7 @@
             <label for="inputPassword">Password wiederholen</label>
             <input type="password" name="inputPassword" title="Password" id="inputRegisterPasswordRepeat" required/>
             <br>
-            <input type="submit"/>
+            <input type="submit" id="registerSubmit"/>
         </form>
     </div>
       <input type="button" id="openRegister" value="Registrieren"/>

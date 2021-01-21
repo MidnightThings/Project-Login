@@ -1,6 +1,7 @@
 document.getElementById("openRegister").addEventListener("click", openRegister);
 document.getElementById("openLogin").addEventListener("click", openLogin);
 document.getElementById("inputRegisterPasswordRepeat").addEventListener("input", checkPasswords);
+document.getElementById("registerSubmit").addEventListener("click", registerSubmit);
 
 function openRegister(){
     document.getElementById("loginFormWrapper").style.display = "none";
@@ -21,4 +22,16 @@ function checkPasswords(event){
     }else{
         event.target.style.backgroundColor = "white";
     }
+}
+
+function registerSubmit(event){
+    var password = document.getElementById("inputRegisterPassword").value;
+    var passwordRepeat = document.getElementById("inputRegisterPasswordRepeat").value;
+    if(password === passwordRepeat){
+        return true;
+    }
+    
+    alert("Bitte überprüfen Sie die Passwörter!");
+    event.preventDefault();
+    return false;
 }
