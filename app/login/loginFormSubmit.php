@@ -1,4 +1,5 @@
 <?php
+  $salt = "$9s!1lfeo{%()94893(8(/HJ@";
   $pw = $_POST["inputPassword"];
   $username = $_POST["inputUsername"];
   require_once("../config/db.php");
@@ -11,7 +12,8 @@
     die();
   } else {
     $retrievedPwd = $result->fetch_assoc()['password'];
-    if($pw === $retrievedPwd) {
+    $pwdHash = hash("sha3-512", $pw . $salt);
+    if($pwdHash === $retrievedPwd) {
       echo 'Wow, you know your password!';
     } else {
       echo 'YOU SHALL NOT PASS';
